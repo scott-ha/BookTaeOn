@@ -9,6 +9,7 @@ var kakao, kakao_res, test_text;
 // 추후 main 서버로 이전
 var ISBN_NUM = "9788970508863"; // 8970508864 ISBN은 한 책당 항상 두개!
 
+// test 앎림톡
 // /api/kakao
 router.post("/", function (req, res, next) {
   kakao = new myKakao();
@@ -35,6 +36,12 @@ router.post("/", function (req, res, next) {
   console.log(kakao_res);
   res.json(kakao_res);
 });
+
+// barcode Read
+// /api/kakao/barcode
+router.post("/barcode", function (req, res, next) {
+    console.log(req);
+})
 
 /* ------------------------------------------------------ */
 // 추후 main 서버로 기능 코드 이전 0421
