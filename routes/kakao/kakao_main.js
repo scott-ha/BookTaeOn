@@ -17,7 +17,7 @@ router.post("/", function (req, res, next) {
     "ISBN: 9788937461668\n" +
     "신규 도서를 확인하세요!\n";
 
-  kakao.setStext = "간단한 텍스트 요소입니다.";
+  kakao.setStext = test_text;
   kakao_res = kakao.SimpleText;
   console.log(kakao_res);
   res.json(kakao_res);
