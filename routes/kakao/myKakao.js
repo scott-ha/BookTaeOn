@@ -39,7 +39,7 @@ module.exports = class myKakao {
         outputs: [
           {
             basicCard: {
-              title: "",
+              title: "알림톡 도착",
               description: this.des,
               buttons: [
                 {
@@ -53,6 +53,7 @@ module.exports = class myKakao {
         ],
       },
     };
+     return response;
   }
 };
 
