@@ -7,7 +7,7 @@ var kakao, kakao_res, test_text;
 
 // for test parameter
 // 추후 main 서버로 이전
-var ISBN_NUM = "";
+var ISBN_NUM = "9788970508863"; // 8970508864 ISBN은 한 책당 항상 두개!
 
 // /api/kakao
 router.post("/", function (req, res, next) {
@@ -20,12 +20,16 @@ router.post("/", function (req, res, next) {
     "옮긴이: 김원중\n" +
     "출판사: 민음사\n" +
     "출판날짜: 2008\n" +
-    "ISBN: 9788937461668\n" +
-    "신규 도서를 확인하세요!\n";
+    "ISBN: " +
+    ISBN_NUM +
+    "\n";
+  ("신규 도서를 확인하세요!\n");
 
   //set
   kakao.setDes = test_text;
-  kakao.setWeblink = 'https://booktaeon-mzfyh.run.goorm.io/api/kakao/book/detail';
+  kakao.setWeblink =
+    "https://booktaeon-mzfyh.run.goorm.io/api/kakao/book/detail?ISBN=" +
+    ISBN_NUM;
   //get
   kakao_res = kakao.BasicCard;
   console.log(kakao_res);
@@ -42,7 +46,7 @@ const API_INFO = {
 var result, data;
 // /api/kakao/book/detail?ISBN=
 router.get("/book/detail", async function (req, res, next) {
-  ISBN_NUM = "9788970508863"; // 8970508864 ISBN은 한 책당 항상 두개!
+  ISBN_NUM = req.query.ISBN;
   result = await BookSearch(ISBN_NUM);
   result = JSON.parse(result);
   console.log(result);
@@ -54,7 +58,7 @@ router.get("/book/detail", async function (req, res, next) {
     title: result.documents[0].title,
   };
   res.render("book_detail", { result: result });
-  result = ''
+  result = "";
   // res.send(result.documents[0].authors);
 });
 

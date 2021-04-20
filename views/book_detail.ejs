@@ -3,10 +3,17 @@
   <head>
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
+  <style>
+      .text {
+          font-family: 'Open Sans', sans-serif;
+          font-weight: bold;
+          font-size: 35px
+      }
+  </style>
   <body>
     <img src="<%= result.thumbnail %>" style="width: 800px"/>
-    <p>제목 : <%= result.title %></p>
-    <p>저자 : <%= result.authors %></p>
-    <p>ISBN : <%= result.isbn %></p>
+    <p class="text">제목 : <%= result.title %></p>
+    <p class="text">저자 : <%= result.authors %></p>
+    <p class="text">ISBN : <%= result.isbn %></p>
   </body>
 </html>
