@@ -15,7 +15,7 @@ module.exports = class myKakao {
   }
   get SimpleText() {
     response = {
-      "version:": "2.0",
+      "version": "2.0",
       template: {
         outputs: [
           {
