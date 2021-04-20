@@ -25,6 +25,7 @@ router.post("/", function (req, res, next) {
 
   //set
   kakao.setDes = test_text;
+  kakao.setWeblink = 'https://booktaeon-mzfyh.run.goorm.io/api/kakao/book/detail';
   //get
   kakao_res = kakao.BasicCard;
   console.log(kakao_res);

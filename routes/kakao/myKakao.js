@@ -16,6 +16,9 @@ module.exports = class myKakao {
   set setDes(data) {
     this.des = data;
   }
+  set setWeblink(data) {
+      this.weblink = data; 
+  }
   get SimpleText() {
     response = {
       version: "2.0",
@@ -45,7 +48,7 @@ module.exports = class myKakao {
                 {
                   action: "webLink",
                   label: "✅ 신규 도서 확인",
-                  webLinkUrl: "https://naver.com",
+                  webLinkUrl: this.weblink,
                 }
               ],
             },
