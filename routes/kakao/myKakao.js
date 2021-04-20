@@ -11,11 +11,14 @@ module.exports = class myKakao {
     this.data;
   }
   set setStext(data) {
-      this.stext = data;
+    this.stext = data;
+  }
+  set setDes(data) {
+    this.des = data;
   }
   get SimpleText() {
     response = {
-      "version": "2.0",
+      version: "2.0",
       template: {
         outputs: [
           {
@@ -26,7 +29,30 @@ module.exports = class myKakao {
         ],
       },
     };
-    return response
+    return response;
+  }
+
+  get BasicCard() {
+    response = {
+      version: "2.0",
+      template: {
+        outputs: [
+          {
+            basicCard: {
+              title: "",
+              description: this.des,
+              buttons: [
+                {
+                  action: "webLink",
+                  label: "✅ 신규 도서 확인",
+                  webLinkUrl: "https://naver.com",
+                }
+              ],
+            },
+          },
+        ],
+      },
+    };
   }
 };
 

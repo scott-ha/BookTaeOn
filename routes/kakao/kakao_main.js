@@ -16,9 +16,11 @@ router.post("/", function (req, res, next) {
     "출판날짜: 2008\n" +
     "ISBN: 9788937461668\n" +
     "신규 도서를 확인하세요!\n";
-
-  kakao.setStext = test_text;
-  kakao_res = kakao.SimpleText;
+    
+  //set
+  kakao.setDes = test_text;
+  //get
+  kakao_res = kakao.BasicCard;
   console.log(kakao_res);
   res.json(kakao_res);
 });
