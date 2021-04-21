@@ -116,7 +116,58 @@ router.post("/barcode", async function (req, res, next) {
     kakao_res = "";
     kakao = "";
   } else {
-    console.log("no");
+    kakao_res = {
+      version: "2.0",
+      template: {
+        outputs: [
+          {
+            carousel: {
+              type: "basicCard",
+              items: [
+                {
+                  thumbnail: {
+                    imageUrl: book_r.thumbnail,
+                    fixedRatio: true
+                  },
+                },
+                {
+                  title: book_r.title,
+                  description:
+                    "저자 : " +
+                    book_r.authors +
+                    "\n출판사 : " +
+                    book_r.publisher +
+                    "\nISBN : " +
+                    book_r.isbn +
+                    "\n출판날짜 : " +
+                    book_r.datetime,
+                },
+              ],
+            },
+          },
+          {
+            carousel: {
+              type: "basicCard",
+              items: [
+                {
+                  title: "등록되자 않은 도서입니다. ",
+                  buttons: [
+                    {
+                      action: "block",
+                      label: "바코드 다시 인식하기 🔴",
+                      blockId: "60497e2db908ae1e731ef137",
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        ],
+      },
+    };
+    res.json(kakao_res);
+    kakao_res = "";
+    kakao = "";
   }
 });
 
