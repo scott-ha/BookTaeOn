@@ -65,7 +65,7 @@ router.post("/barcode", async function (req, res, next) {
   console.log('===============');
   console.log(book_r.isbn);
   console.log(barcode);
-  if (book_r.isbn.includes(barcode)) {
+  if (ISBN_NUM.includes(barcode)) {
     kakao_res = {
       version: "2.0",
       template: {
