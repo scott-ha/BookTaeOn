@@ -38,8 +38,8 @@ router.post("/", function (req, res, next) {
   res.json(kakao_res);
 
   // initialize
-  kakao_res = '';
-  kakao = ''
+  kakao_res = "";
+  kakao = "";
 });
 
 // barcode Read
@@ -58,14 +58,63 @@ router.post("/barcode", async function (req, res, next) {
     isbn: book_r.documents[0].isbn,
     thumbnail: book_r.documents[0].thumbnail,
     title: book_r.documents[0].title,
+    publisher: book_r.documents[0].publisher,
+    datetime: book_r.documents[0].datetime,
   };
-    console.log(book_r);
-  if(book_r.isbn.includes(barcode)) {
-      console.log('yes');
+  console.log(book_r);
+  if (book_r.isbn.includes(barcode)) {
+    kakao_res = {
+      version: "2.0",
+      template: {
+        outputs: [
+          {
+            carousel: {
+              type: "basicCard",
+              items: [
+                {
+                  thumbnail: {
+                    imageUrl: book_r.thumbnail,
+                  },
+                },
+                {
+                  title: book_r.title,
+                  description:
+                    "저자 : " +
+                    book_r.authors +
+                    "\n출판사 : " +
+                    book_r.publisher +
+                    "\nISBN : " +
+                    book_r.isbn +
+                    "\n출판날짜 : " +
+                    book_r.datetime,
+                },
+              ],
+            },
+            carousel: {
+              type: "basicCard",
+              items: [
+                {
+                  title: "등록된 도서입니다.👍 ",
+                  buttons: [
+                    {
+                      action: "block",
+                      label: "도서 등록하기 🟢",
+                      blockId: "607efc0af1a09324e4b37c58",
+                    },
+                  ],
+                }
+              ],
+            },
+          },
+        ],
+      },
+    };
+    res.json(kakao_res);
+    kakao_res = '';
+    kakao = '';
   } else {
-      console.log('no');
+    console.log("no");
   }
-
 });
 
 /* ------------------------------------------------------ */
