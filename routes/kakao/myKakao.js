@@ -47,7 +47,7 @@ module.exports = class myKakao {
               buttons: [
                 {
                   action: "webLink",
-                  label: "✅ 신규 도서 확인",
+                  label: "✅ 배송 정보 확인",
                   webLinkUrl: this.weblink,
                 }
               ],
