@@ -200,8 +200,9 @@ router.post("/barcode", async function (req, res, next) {
 });
 
 router.post('/book_count', function(req, res, next) {
-    var count = req.body.action.detailParams.book_count;
+    var count = req.body.action.params.book_count;
     count = JSON.parse(count);
+    count = count.amount;
     console.log(count);
     kakao_res = {
       version: "2.0",
