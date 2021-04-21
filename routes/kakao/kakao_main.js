@@ -3,7 +3,7 @@ const router = express.Router();
 const request = require("request");
 var myKakao = require("./myKakao");
 
-var kakao, kakao_res, test_text;
+var kakao, kakao_res, alarm_text, book_r;
 
 // for test parameter
 // 추후 main 서버로 이전
@@ -14,7 +14,7 @@ var ISBN_NUM = "9788970508863"; // 8970508864 ISBN은 한 책당 항상 두개!
 router.post("/", function (req, res, next) {
   kakao = new myKakao();
 
-  test_text =
+  alarm_text =
     "[북테온] 판매 도서 정보 안내\n" +
     "도서명: 삼국유사\n" +
     "지은이: 일연\n" +
@@ -23,25 +23,47 @@ router.post("/", function (req, res, next) {
     "출판날짜: 2008\n" +
     "ISBN: " +
     ISBN_NUM +
-    "\n";
-  ("신규 도서를 확인하세요!\n");
+    "\n" +
+    "신규 도서를 확인하세요!\n";
 
   //set
-  kakao.setDes = test_text;
+  kakao.setDes = alarm_text;
   kakao.setWeblink =
     "https://booktaeon-mzfyh.run.goorm.io/api/kakao/book/detail?ISBN=" +
     ISBN_NUM;
   //get
   kakao_res = kakao.BasicCard;
   console.log(kakao_res);
+
   res.json(kakao_res);
+
+  // initialize
+  kakao_res = '';
+  kakao = ''
 });
 
 // barcode Read
 // /api/kakao/barcode
-router.post("/barcode", function (req, res, next) {
-    console.log(req);
-})
+router.post("/barcode", async function (req, res, next) {
+  var barcode = req.body.action.params.barcode;
+  barcode = JSON.parse(barcode);
+  barcode = barcode.barcodeData;
+  // console.log(barcode.barcodeData);
+  kakao = new myKakao();
+  book_r = await BookSearch(barcode);
+  book_r = {
+    authors: book_r.documents[0].authors[0],
+    contents: book_r.documents[0].contents,
+    isbn: book_r.documents[0].isbn,
+    thumbnail: book_r.documents[0].thumbnail,
+    title: book_r.documents[0].title,
+  };
+
+  if(book_r.includes(book_r.isbn)) {
+      console.log('yes');
+  } 
+
+});
 
 /* ------------------------------------------------------ */
 // 추후 main 서버로 기능 코드 이전 0421
