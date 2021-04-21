@@ -59,7 +59,8 @@ router.post("/barcode", async function (req, res, next) {
     thumbnail: book_r.documents[0].thumbnail,
     title: book_r.documents[0].title,
   };
-
+    console.log(book_r.documents[0].isbn);
+    console.log(typeof book_r.documents[0].isbn);
   if(book_r.documents[0].isbn.includes(book_r.isbn)) {
       console.log('yes');
   } else {
