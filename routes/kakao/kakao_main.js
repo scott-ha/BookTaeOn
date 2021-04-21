@@ -62,6 +62,7 @@ router.post("/barcode", async function (req, res, next) {
     datetime: book_r.documents[0].datetime,
   };
   console.log(book_r);
+  console.log('===============');
   console.log(book_r.isbn);
   console.log(barcode);
   if (book_r.isbn.includes(barcode)) {
@@ -110,6 +111,18 @@ router.post("/barcode", async function (req, res, next) {
                 },
               ],
             },
+          },
+        ],
+        quickReplies: [
+          {
+            action: "block",
+            label: "이전으로",
+            blockId: "607efc0af1a09324e4b37c58",
+          },
+          {
+            action: "block",
+            label: "🏠 홈으로",
+            blockId: "607efc0af1a09324e4b37c58",
           },
         ],
       },
