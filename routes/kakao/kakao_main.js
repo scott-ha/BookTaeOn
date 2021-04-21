@@ -90,6 +90,8 @@ router.post("/barcode", async function (req, res, next) {
                 },
               ],
             },
+          },
+          {
             carousel: {
               type: "basicCard",
               items: [
@@ -102,7 +104,7 @@ router.post("/barcode", async function (req, res, next) {
                       blockId: "607efc0af1a09324e4b37c58",
                     },
                   ],
-                }
+                },
               ],
             },
           },
@@ -110,8 +112,8 @@ router.post("/barcode", async function (req, res, next) {
       },
     };
     res.json(kakao_res);
-    kakao_res = '';
-    kakao = '';
+    kakao_res = "";
+    kakao = "";
   } else {
     console.log("no");
   }
