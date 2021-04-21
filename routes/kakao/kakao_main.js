@@ -74,6 +74,7 @@ router.post("/barcode", async function (req, res, next) {
                 {
                   thumbnail: {
                     imageUrl: book_r.thumbnail,
+                    fixedRatio: true
                   },
                 },
                 {
