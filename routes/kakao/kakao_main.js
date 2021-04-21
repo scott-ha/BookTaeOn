@@ -28,7 +28,7 @@ router.post("/", async function (req, res, next) {
   alarm_text =
     "[북테온] 판매 도서 정보 안내\n" +
     "도서명: " + book_r.title + "\n" +
-    "지은이: " + book_r.authors + "\n"
+    "지은이: " + book_r.authors + "\n" +
     "출판사: " + book_r.publisher + "\n" +
     "출판날짜: " + book_r.datetime + "\n" +
     "ISBN: " +
