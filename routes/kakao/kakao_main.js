@@ -51,6 +51,7 @@ router.post("/barcode", async function (req, res, next) {
   // console.log(barcode.barcodeData);
   kakao = new myKakao();
   book_r = await BookSearch(barcode);
+  book_r = JSON.parse(book_r);
   book_r = {
     authors: book_r.documents[0].authors[0],
     contents: book_r.documents[0].contents,
@@ -61,7 +62,9 @@ router.post("/barcode", async function (req, res, next) {
 
   if(book_r.includes(book_r.isbn)) {
       console.log('yes');
-  } 
+  } else {
+      console.log('no');
+  }
 
 });
 
