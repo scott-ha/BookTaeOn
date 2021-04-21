@@ -198,6 +198,25 @@ router.post("/barcode", async function (req, res, next) {
   }
 });
 
+router.post('/book_count', function(req, res, next) {
+    var count = req.body;
+    console.log(count);
+    kakao_res = {
+      version: "2.0",
+      template: {
+        outputs: [
+          {
+            simpleText: {
+              text: count + "권 입력하셨습니다.",
+            },
+          },
+        ],
+      },
+    };
+    res.json(kakao_res);
+    kakao_res = '';
+});
+
 /* ------------------------------------------------------ */
 // 추후 main 서버로 기능 코드 이전 0421
 // KAKAO API 도서 검색 BY ISBN
