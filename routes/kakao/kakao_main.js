@@ -7,7 +7,7 @@ var kakao, kakao_res, alarm_text, book_r;
 
 // for test parameter
 // 추후 main 서버로 이전
-var ISBN_NUM = "9788970508863"; // 8970508864 ISBN은 한 책당 항상 두개!
+var ISBN_NUM = "9791187142560"; // 8970508864 ISBN은 한 책당 항상 두개!
 
 // test 앎림톡
 // /api/kakao
