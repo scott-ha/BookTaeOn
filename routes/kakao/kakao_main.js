@@ -62,7 +62,7 @@ router.post("/barcode", async function (req, res, next) {
     datetime: book_r.documents[0].datetime,
   };
   console.log(book_r);
-  console.log('===============');
+  console.log("===============");
   console.log(book_r.isbn);
   console.log(barcode);
   console.log(ISBN_NUM);
@@ -199,25 +199,72 @@ router.post("/barcode", async function (req, res, next) {
   }
 });
 
-router.post('/book_count', function(req, res, next) {
-    var count = req.body.action.params.book_count;
-    count = JSON.parse(count);
-    count = count.amount;
-    console.log(count);
-    kakao_res = {
-      version: "2.0",
-      template: {
-        outputs: [
-          {
-            simpleText: {
-              text: count + "권 입력하셨습니다.",
-            },
+router.post("/book_count", function (req, res, next) {
+  var count = req.body.action.params.book_count;
+  count = JSON.parse(count);
+  count = count.amount;
+  console.log(count);
+  kakao_res = {
+    version: "2.0",
+    template: {
+      outputs: [
+        {
+          simpleText: {
+            text: count + "권 입력하셨습니다.",
           },
-        ],
-      },
-    };
-    res.json(kakao_res);
-    kakao_res = '';
+        },
+        {
+          carousel: {
+            type: "basicCard",
+            items: [
+              {
+                title: "1 번째 도서 상태",
+                buttons: [
+                  {
+                    action: "block",
+                    label: "상 🔵",
+                    blockId: "607fa7f374273b74cee395c7",
+                  },
+                  {
+                    action: "block",
+                    label: "중 🟡",
+                    blockId: "607fa7f374273b74cee395c7",
+                  },
+                  {
+                    action: "block",
+                    label: "하 🔴",
+                    blockId: "607fa7f374273b74cee395c7",
+                  },
+                ],
+              },
+              {
+                title: "2 번째 도서 상태",
+                buttons: [
+                  {
+                    action: "block",
+                    label: "상 🔵",
+                    blockId: "607fa7f374273b74cee395c7",
+                  },
+                  {
+                    action: "block",
+                    label: "중 🟡",
+                    blockId: "607fa7f374273b74cee395c7",
+                  },
+                  {
+                    action: "block",
+                    label: "하 🔴",
+                    blockId: "607fa7f374273b74cee395c7",
+                  },
+                ],
+              },
+            ],
+          },
+        },
+      ],
+    },
+  };
+  res.json(kakao_res);
+  kakao_res = "";
 });
 
 /* ------------------------------------------------------ */
