@@ -62,6 +62,8 @@ router.post("/barcode", async function (req, res, next) {
     datetime: book_r.documents[0].datetime,
   };
   console.log(book_r);
+  console.log(book_r.isbn);
+  console.log(barcode);
   if (book_r.isbn.includes(barcode)) {
     kakao_res = {
       version: "2.0",
@@ -74,7 +76,7 @@ router.post("/barcode", async function (req, res, next) {
                 {
                   thumbnail: {
                     imageUrl: book_r.thumbnail,
-                    fixedRatio: true
+                    fixedRatio: true,
                   },
                 },
                 {
@@ -127,7 +129,7 @@ router.post("/barcode", async function (req, res, next) {
                 {
                   thumbnail: {
                     imageUrl: book_r.thumbnail,
-                    fixedRatio: true
+                    fixedRatio: true,
                   },
                 },
                 {
@@ -150,7 +152,7 @@ router.post("/barcode", async function (req, res, next) {
               type: "basicCard",
               items: [
                 {
-                  title: "등록되자 않은 도서입니다. ",
+                  title: "등록되지 않은 도서입니다. ",
                   buttons: [
                     {
                       action: "block",
@@ -161,6 +163,18 @@ router.post("/barcode", async function (req, res, next) {
                 },
               ],
             },
+          },
+        ],
+        quickReplies: [
+          {
+            action: "block",
+            label: "이전으로",
+            blockId: "607efc0af1a09324e4b37c58",
+          },
+          {
+            action: "block",
+            label: "🏠 홈으로",
+            blockId: "607efc0af1a09324e4b37c58",
           },
         ],
       },
