@@ -60,7 +60,7 @@ router.post("/barcode", async function (req, res, next) {
     title: book_r.documents[0].title,
   };
     console.log(book_r);
-  if(book_r.documents[0].isbn.includes(book_r.isbn)) {
+  if(book_r.isbn.includes(barcode)) {
       console.log('yes');
   } else {
       console.log('no');
