@@ -106,7 +106,7 @@ router.post("/barcode", async function (req, res, next) {
                     {
                       action: "block",
                       label: "도서 등록하기 🟢",
-                      blockId: "607efc0af1a09324e4b37c58",
+                      blockId: "607f9df2f1a09324e4b37ebb",
                     },
                   ],
                 },
