@@ -9,9 +9,54 @@ var kakao, kakao_res, alarm_text, book_r;
 // 추후 main 서버로 이전
 var ISBN_NUM = "9791187142560"; // 8970508864 ISBN은 한 책당 항상 두개!
 
-// test 앎림톡
+// test 앎림톡 before
 // /api/kakao
 router.post("/", async function (req, res, next) {
+  kakao = new myKakao();
+  book_r = await BookSearch(ISBN_NUM);
+  book_r = JSON.parse(book_r);
+  book_r = {
+    authors: book_r.documents[0].authors[0],
+    contents: book_r.documents[0].contents,
+    isbn: book_r.documents[0].isbn,
+    thumbnail: book_r.documents[0].thumbnail,
+    title: book_r.documents[0].title,
+    publisher: book_r.documents[0].publisher,
+    datetime: book_r.documents[0].datetime,
+  };
+
+  alarm_text =
+    "[북테온] 신규 도서 등록 안내\n" +
+    "도서명: " + book_r.title + "\n" +
+    "지은이: " + book_r.authors + "\n" +
+    "출판사: " + book_r.publisher + "\n" +
+    "출판날짜: " + book_r.datetime + "\n" +
+    "ISBN: " +
+    ISBN_NUM +
+    "\n" +
+    "신규 도서를 확인하세요!\n";
+
+  //set
+  kakao.setDes = alarm_text;
+  kakao.setWeblink =
+    "https://booktaeon-mzfyh.run.goorm.io/api/kakao/book/detail?ISBN=" +
+    ISBN_NUM;
+  //get
+  kakao_res = kakao.BasicCard;
+  console.log(kakao_res);
+
+  res.json(kakao_res);
+
+  // initialize
+  kakao_res = "";
+  kakao = "";
+  alarm_text = "";
+  book_r = "";
+});
+
+// test 앎림톡 after
+// /api/kakao
+router.post("/after", async function (req, res, next) {
   kakao = new myKakao();
   book_r = await BookSearch(ISBN_NUM);
   book_r = JSON.parse(book_r);
@@ -34,7 +79,9 @@ router.post("/", async function (req, res, next) {
     "ISBN: " +
     ISBN_NUM +
     "\n" +
-    "신규 도서를 확인하세요!\n";
+    "고객명 : 홍길동\n" +
+    "배송지 : 서울시 강남구"
+    ;
 
   //set
   kakao.setDes = alarm_text;
